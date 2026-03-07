@@ -1,0 +1,10 @@
+project_id = "ugfgfmevsvciqtgvtxln"
+
+[functions.create-checkout]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.create-loan-repayment]
+verify_jwt = false
