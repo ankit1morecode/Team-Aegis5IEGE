@@ -42,7 +42,6 @@ This ensures seamless payments while enabling flexible short-term credit for use
 - shadcn/ui
 
 ### Backend
-- Lovable Cloud
 - PostgreSQL
 - Authentication
 - Edge Functions
