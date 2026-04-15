@@ -187,7 +187,7 @@ export const CreditOfferModal = ({
             disabled={isProcessing}
             className="w-full"
           >
-            Cancel Payment
+          Cancel Payment
           </Button>
         </DialogFooter>
       </DialogContent>

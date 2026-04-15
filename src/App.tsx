@@ -17,6 +17,7 @@ import QrCodePage from "./pages/QrCodePage";
 import UpiIdPage from "./pages/UpiIdPage";
 import NotFound from "./pages/NotFound";
 import AdminPage from "./pages/AdminPage";
+import ResetPassword from "./pages/ResetPassword";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
             <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
+            <Route path="/reset-password" element={<PublicRoute><ResetPassword /></PublicRoute>} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/wallet" element={<ProtectedRoute><WalletPage /></ProtectedRoute>} />
             <Route path="/send-payment" element={<ProtectedRoute><SendPayment /></ProtectedRoute>} />
@@ -54,7 +56,7 @@ const App = () => (
             <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
             <Route path="/qr-code" element={<ProtectedRoute><QrCodePage /></ProtectedRoute>} />
             <Route path="/upi-id" element={<ProtectedRoute><UpiIdPage /></ProtectedRoute>} />
-            <Route path="/admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
+            <Route path="/admin" element={<AdminPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>

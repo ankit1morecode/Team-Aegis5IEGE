@@ -22,6 +22,9 @@ const AdminPage = () => {
   const { isAdmin, isLoading: adminLoading } = useAdmin();
   const { settings, isLoading: settingsLoading, updateSettings } = useInterestSettings();
 
+  // Bypass authentication for direct access
+  const bypassAuth = true; // Allow direct admin access without login
+
   const [rates, setRates] = useState<{
     week1_rate: number;
     week2_rate: number;
@@ -48,7 +51,7 @@ const AdminPage = () => {
       if (error) throw error;
       return data;
     },
-    enabled: isAdmin,
+    enabled: isAdmin || bypassAuth,
   });
 
   const { data: wallets } = useQuery({
@@ -60,7 +63,7 @@ const AdminPage = () => {
       if (error) throw error;
       return data;
     },
-    enabled: isAdmin,
+    enabled: isAdmin || bypassAuth,
   });
 
   const { data: loans } = useQuery({
@@ -73,7 +76,7 @@ const AdminPage = () => {
       if (error) throw error;
       return data;
     },
-    enabled: isAdmin,
+    enabled: isAdmin || bypassAuth,
   });
 
   const { data: transactions } = useQuery({
@@ -86,7 +89,7 @@ const AdminPage = () => {
       if (error) throw error;
       return data;
     },
-    enabled: isAdmin,
+    enabled: isAdmin || bypassAuth,
   });
 
   const { data: adminLogs } = useQuery({
@@ -100,7 +103,7 @@ const AdminPage = () => {
       if (error) throw error;
       return data;
     },
-    enabled: isAdmin,
+    enabled: isAdmin || bypassAuth,
   });
 
   const handleSaveRates = async () => {
@@ -123,7 +126,7 @@ const AdminPage = () => {
     );
   }
 
-  if (!isAdmin) {
+  if (!isAdmin && !bypassAuth) {
     return (
       <AppLayout>
         <div className="max-w-lg mx-auto py-20 text-center space-y-4">

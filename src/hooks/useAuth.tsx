@@ -2,7 +2,7 @@ import { useState, useEffect, createContext, useContext } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import type { User, Session } from "@supabase/supabase-js";
 
-interface AuthContextType {
+interface AuthContextType{
   user: User | null;
   session: Session | null;
   loading: boolean;
@@ -40,7 +40,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       password,
       options: { data: { full_name: fullName }, emailRedirectTo: window.location.origin },
     });
-    if (error) throw error;
+    if (error) {
+      // Handle rate limit specifically
+      if (error.message?.includes('rate limit') || error.message?.includes('too many requests')) {
+        throw new Error('Too many signup attempts. Please wait 1 hour or use a different email.');
+      }
+      throw error;
+    }
   };
 
   const signIn = async (email: string, password: string) => {

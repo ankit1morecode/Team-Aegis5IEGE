@@ -37,7 +37,7 @@ export const KycBanner = ({ hideWhenVerified = true }: KycBannerProps) => {
     );
   }
 
-  if (isKycPending || isKycRejected) {
+  if (isKycPending || isKycRejected){
     return (
       <Card className="shadow-card border-l-4 border-l-primary animate-fade-in">
         <CardContent className="py-4">
